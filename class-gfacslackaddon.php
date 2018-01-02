@@ -84,20 +84,21 @@ class GFacslackaddon extends GFAddOn {
                 'title'  => esc_html__( 'AC-Slack Add-On Settings', 'acslackaddon' ),
                 'fields' => array(
                     array(
-                        'label'   => esc_html__( 'Enable ', 'acslackaddon' ),
-                        'type'    => 'checkbox',
+                        'label'   => esc_html__( 'Enable Integration for ', 'acslackaddon' ),
+                        'type'    => 'radio',
                         'name'    => 'integration-settings',
-                        'tooltip' => esc_html__( '', 'acslackaddon' ),
+                        'tooltip' => esc_html__( 'This is the tooltip', 'acslackaddon' ),
                         'choices' => array(
                             array(
-                                'label' => esc_html__( 'Enable AC Integration', 'acslackaddon' ),
-                                'name'  => 'enabled-ac',
+                                'label' => esc_html__( 'ActiveCollab', 'acslackaddon' ),
                             ),
                             array(
-                                'label' => esc_html__( 'Enable Slack Integration', 'acslackaddon' ),
-                                'name'  => 'enable-slack',
+                                'label' => esc_html__( 'Slack', 'acslackaddon' ),
                             ),
-                        )
+                            array(
+                                'label' => esc_html__( 'Both', 'acslackaddon' ),
+                            ),
+                        ),
                     )
                 )
             )
@@ -106,9 +107,9 @@ class GFacslackaddon extends GFAddOn {
  
     public function form_settings_fields( $form ) {
         $form_settings_array = array();
-        if( $this->get_plugin_setting( ''))
-        return array(
-            array(
+        $integrations_enabled = $this->get_plugin_setting( 'integration-settings');
+        if(  $integrations_enabled == 'ActiveCollab' || $integrations_enabled == 'Both'){
+            array_push( $form_settings_array, array(
                 'title'  => esc_html__( 'ActiveCollab Integration', 'acslackaddon' ),
                 'fields' => array(
                     array(
@@ -147,8 +148,10 @@ class GFacslackaddon extends GFAddOn {
                         'class'   => 'medium merge-tag-support mt-position-right',
                     ),
                 ),
-            ),
-            array(
+            ));
+        }
+        if(  $integrations_enabled == 'Slack' || $integrations_enabled == 'Both'){
+            array_push( $form_settings_array, array(
                 'title'  => esc_html__( 'Slack Integration', 'acslackaddon' ),
                 'fields' => array(
                     array(
@@ -187,8 +190,10 @@ class GFacslackaddon extends GFAddOn {
                         'class'   => 'medium merge-tag-support mt-position-right',
                     ),
                 ),
-            ),
-        );
+            ));
+        }
+
+        return $form_settings_array;
     }
  
     public function is_valid_setting( $value ) {
