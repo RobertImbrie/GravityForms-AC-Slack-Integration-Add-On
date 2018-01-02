@@ -105,6 +105,8 @@ class GFacslackaddon extends GFAddOn {
     }
  
     public function form_settings_fields( $form ) {
+        $form_settings_array = array();
+        if( $this->get_plugin_setting( ''))
         return array(
             array(
                 'title'  => esc_html__( 'ActiveCollab Integration', 'acslackaddon' ),
@@ -187,18 +189,6 @@ class GFacslackaddon extends GFAddOn {
                 ),
             ),
         );
-    }
- 
-    public function settings_my_custom_field_type( $field, $echo = true ) {
-        echo '<div>' . esc_html__( 'My custom field contains a few settings:', 'acslackaddon' ) . '</div>';
- 
-        // get the text field settings from the main field and then render the text field
-        $text_field = $field['args']['text'];
-        $this->settings_text( $text_field );
- 
-        // get the checkbox field settings from the main field and then render the checkbox field
-        $checkbox_field = $field['args']['checkbox'];
-        $this->settings_checkbox( $checkbox_field );
     }
  
     public function is_valid_setting( $value ) {
