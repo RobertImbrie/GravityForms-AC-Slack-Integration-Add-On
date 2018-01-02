@@ -34,9 +34,7 @@ class GFacslackaddon extends GFAddOn {
                 'version' => $this->_version,
                 'deps'    => array( 'jquery' ),
                 'strings' => array(
-                    'first'  => esc_html__( 'First Choice', 'acslackaddon' ),
-                    'second' => esc_html__( 'Second Choice', 'acslackaddon' ),
-                    'third'  => esc_html__( 'Third Choice', 'acslackaddon' )
+                    'first'  => esc_html__( '', 'acslackaddon' ),
                 ),
                 'enqueue' => array(
                     array(
@@ -69,7 +67,7 @@ class GFacslackaddon extends GFAddOn {
     function form_submit_button( $button, $form ) {
         $settings = $this->get_form_settings( $form );
         if ( isset( $settings['enabled'] ) && true == $settings['enabled'] ) {
-            $text   = $this->get_plugin_setting( 'mytextbox' );
+            $text   = $this->get_plugin_setting( 'integration-settings' );
             $button = "<div>{$text}</div>" . $button;
         }
  
@@ -86,13 +84,20 @@ class GFacslackaddon extends GFAddOn {
                 'title'  => esc_html__( 'AC-Slack Add-On Settings', 'acslackaddon' ),
                 'fields' => array(
                     array(
-                        'name'              => 'mytextbox',
-
-                        'tooltip'           => esc_html__( 'This is the tooltip', 'acslackaddon' ),
-                        'label'             => esc_html__( 'This is the label', 'acslackaddon' ),
-                        'type'              => 'text',
-                        'class'             => 'small',
-                        'feedback_callback' => array( $this, 'is_valid_setting' ),
+                        'label'   => esc_html__( 'Enable ', 'acslackaddon' ),
+                        'type'    => 'checkbox',
+                        'name'    => 'integration-settings',
+                        'tooltip' => esc_html__( '', 'acslackaddon' ),
+                        'choices' => array(
+                            array(
+                                'label' => esc_html__( 'Enable AC Integration', 'acslackaddon' ),
+                                'name'  => 'first',
+                            ),
+                            array(
+                                'label' => esc_html__( 'Enable Slack Integration', 'acslackaddon' ),
+                                'name'  => 'second',
+                            ),
+                        )
                     )
                 )
             )
