@@ -108,90 +108,90 @@ class GFacslackaddon extends GFAddOn {
     public function form_settings_fields( $form ) {
         $form_settings_array = array();
         $integrations_enabled = $this->get_plugin_setting( 'integration-settings');
-        if(  $integrations_enabled == 'ActiveCollab' || $integrations_enabled == 'Both'){
+        //if(  $integrations_enabled == 'ActiveCollab' || $integrations_enabled == 'Both'){
             array_push( $form_settings_array, array(
                 'title'  => esc_html__( 'ActiveCollab Integration', 'acslackaddon' ),
                 'fields' => array(
                     array(
                         'label'   => esc_html__( 'Append to Task Name', 'acslackaddon' ),
-                        'type'    => 'textarea',
+                        'type'    => 'text',
                         'name'    => 'ac-task',
-                        'tooltip' => esc_html__( 'You can add the data of GravityForms fields to the text by putting the field title inside a shortcode as follows: [Example Title]', 'acslackaddon' ),
+                        'tooltip' => esc_html__( 'Append to task name', 'acslackaddon' ),
                         'class'   => 'medium merge-tag-support mt-position-right',
                     ),
                     array(
                         'label'   => esc_html__( 'Project', 'acslackaddon' ),
-                        'type'    => 'textarea',
+                        'type'    => 'text',
                         'name'    => 'ac-project',
                         'tooltip' => esc_html__( 'Adds the task to the project name', 'acslackaddon' ),
-                        'class'   => 'medium merge-tag-support mt-position-right',
+                        'class'   => 'medium mt-position-right',
                     ),
                     array(
                         'label'   => esc_html__( 'Tasklist', 'acslackaddon' ),
-                        'type'    => 'textarea',
+                        'type'    => 'text',
                         'name'    => 'ac-tasklist',
                         'tooltip' => esc_html__( 'Adds the task to the tasklist name', 'acslackaddon' ),
-                        'class'   => 'medium merge-tag-support mt-position-right',
+                        'class'   => 'medium mt-position-right',
                     ),
                     array(
                         'label'   => esc_html__( 'ActiveCollab URL', 'acslackaddon' ),
-                        'type'    => 'textarea',
+                        'type'    => 'text',
                         'name'    => 'ac-url',
                         'tooltip' => esc_html__( 'Enter the URL of your ActiveCollab site', 'acslackaddon' ),
-                        'class'   => 'medium merge-tag-support mt-position-right',
+                        'class'   => 'medium mt-position-right',
                     ),
                     array(
                         'label'   => esc_html__( 'API Key', 'acslackaddon' ),
-                        'type'    => 'textarea',
+                        'type'    => 'text',
                         'name'    => 'ac-key',
                         'tooltip' => esc_html__( 'See https://github.com/RobertImbrie/gf-acslackaddon on finding the API key', 'acslackaddon' ),
-                        'class'   => 'medium merge-tag-support mt-position-right',
+                        'class'   => 'medium mt-position-right',
                     ),
                 ),
             ));
-        }
-        if(  $integrations_enabled == 'Slack' || $integrations_enabled == 'Both'){
+        //}
+        //if(  $integrations_enabled == 'Slack' || $integrations_enabled == 'Both'){
             array_push( $form_settings_array, array(
                 'title'  => esc_html__( 'Slack Integration', 'acslackaddon' ),
                 'fields' => array(
                     array(
                         'label'   => esc_html__( 'Message', 'acslackaddon' ),
-                        'type'    => 'textarea',
+                        'type'    => 'text',
                         'name'    => 'slack-message',
-                        'tooltip' => esc_html__( 'Add a Slack message', 'acslackaddon' ),
+                        'tooltip' => esc_html__( 'Add a Slack message. Supports {ac_task_id} and {ac_task_url} merge tags.', 'acslackaddon' ),
                         'class'   => 'medium merge-tag-support mt-position-right',
                     ),
                     array(
                         'label'   => esc_html__( 'Channel', 'acslackaddon' ),
-                        'type'    => 'textarea',
+                        'type'    => 'text',
                         'name'    => 'slack-channel',
                         'tooltip' => esc_html__( 'Choose the Slack channel (no # required)', 'acslackaddon' ),
-                        'class'   => 'medium merge-tag-support mt-position-right',
+                        'class'   => 'medium mt-position-right',
                     ),
                     array(
                         'label'   => esc_html__( 'Username', 'acslackaddon' ),
-                        'type'    => 'textarea',
+                        'type'    => 'text',
                         'name'    => 'slack-username',
                         'tooltip' => esc_html__( 'Choose the username to display as', 'acslackaddon' ),
-                        'class'   => 'medium merge-tag-support mt-position-right',
+                        'class'   => 'medium mt-position-right',
                     ),
                     array(
                         'label'   => esc_html__( 'User Emoji', 'acslackaddon' ),
-                        'type'    => 'textarea',
+                        'type'    => 'text',
                         'name'    => 'slack-emoji',
                         'tooltip' => esc_html__( 'Choose an emoji to act a user icon', 'acslackaddon' ),
-                        'class'   => 'medium merge-tag-support mt-position-right',
+                        'class'   => 'medium mt-position-right',
                     ),
                     array(
                         'label'   => esc_html__( 'API Key', 'acslackaddon' ),
-                        'type'    => 'textarea',
+                        'type'    => 'text',
                         'name'    => 'slack-key',
                         'tooltip' => esc_html__( 'See https://github.com/RobertImbrie/gf-acslackaddon on finding the API key', 'acslackaddon' ),
-                        'class'   => 'medium merge-tag-support mt-position-right',
+                        'class'   => 'medium mt-position-right',
                     ),
                 ),
             ));
-        }
+        //}
 
         return $form_settings_array;
     }
